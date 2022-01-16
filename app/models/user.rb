@@ -14,12 +14,11 @@ class User < ApplicationRecord
   # 中間テーブルを介して「follower」モデルのUser(フォローされた側)を集めることを「followings」と定義
   # followページを作るのに必要。
   has_many :followings, through: :active_relationships, source: :follower
-  # ========================================================================================
 
-  # ====================自分がフォローされるユーザーとの関連 ===================================
   #フォローされる側のUser（Follower）から見て、フォローしてくる側のUser（Following）を(中間テーブルを介して)集める。
   # なので親はfollower_id(フォローされる側)
   has_many :passive_relationships, class_name: "Follow", foreign_key: :follower_id
+
   # 中間テーブルを介して「following」モデルのUser(フォローする側)を集めることを「followers」と定義
   has_many :followers, through: :passive_relationships, source: :following
 
