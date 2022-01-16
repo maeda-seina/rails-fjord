@@ -33,6 +33,14 @@
   <% end %>
 </p>
 
+<% if current_user != @user %>
+  <% if @user.followed_by?(current_user) %>
+    <p><%=link_to "フォロー済み", user_follows_path(@user.id), method: :delete %></p>
+  <% else %>
+    <p><%=link_to "フォローする", user_follows_path(@user.id), method: :post %></p>
+  <% end %>
+<% end %>
+
 <% if current_user == @user %>
   <%= link_to t('views.common.edit'), edit_user_registration_path %> |
 <% end %>
