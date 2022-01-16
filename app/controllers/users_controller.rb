@@ -14,14 +14,14 @@ class UsersController < ApplicationController
     # user.followingsができるようにuser.rbで、
     # has_many :followings, through: :active_relationships, source: :follower
     # を定義していたのか...
-    byebug
-    @users = user.active_relationships
+    # @users = user.active_relationships
+    @users = user.followings
   end
 
   def followers
     user = User.find(params[:id])
-    byebug
-    @users = user.passive_relationships
+    # @users = user.passive_relationships
+    @users = user.followers
     # なぜhas_many :followers, through: :passive_relationships, source: :followingがあるのか調査
     # →user情報を取れるから便利。passive_relationshipsでは取れない。
     #
