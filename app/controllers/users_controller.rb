@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     # user.followingsができるようにuser.rbで、
     # has_many :followings, through: :active_relationships, source: :follower
-    # を定義していたのか...
+    # を定義していたのか
     # @users = user.active_relationships
     @users = user.followings
   end
